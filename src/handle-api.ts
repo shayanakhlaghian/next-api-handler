@@ -1,33 +1,33 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { BaseError } from './errors/base-error';
 import { AppError } from './types/app-error';
-import { Methods } from './types/methods';
+import { Method } from './types/methods';
+import { Handler } from './types/handler';
+
+const urlNotFoundError: AppError = {
+  errors: [
+    {
+      message: 'Requested url was not found on the server.',
+    },
+  ],
+};
+
+const systemError: AppError = {
+  errors: [
+    {
+      message: 'Something went wrong.',
+    },
+  ],
+};
 
 export const handleApi =
-  (
-    method: Methods,
-    fn: (req: NextApiRequest, res: NextApiResponse) => Promise<void>
-  ) =>
-  (req: NextApiRequest, res: NextApiResponse) => {
-    if (method !== req.method) {
-      const urlNotFoundError: AppError = {
-        errors: [
-          {
-            message: 'The requested url was not found.',
-          },
-        ],
-      };
+  (handlers: Handler[]) => (req: NextApiRequest, res: NextApiResponse) => {
+    const handler = handlers.find(({ method }) => req.method === method);
+    if (!handler) res.status(404).send(urlNotFoundError);
 
-      return res.status(404).send(urlNotFoundError);
-    }
-
-    fn(req, res).catch((err) => {
+    handler?.fn(req, res).catch((err) => {
       if (err instanceof BaseError)
-        return res.status(err.statusCode).send(err.serializeErrors());
-
-      const systemError: AppError = {
-        errors: [{ message: 'Something went wrong.' }],
-      };
+        res.status(err.statusCode).send(err.serializeErrors());
 
       res.status(500).send(systemError);
     });

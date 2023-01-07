@@ -2,6 +2,7 @@ export * from './handle-api';
 
 export * from './types/app-error';
 export * from './types/methods';
+export * from './types/handler';
 
 export * from './errors/base-error';
 export * from './errors/authorization-error';

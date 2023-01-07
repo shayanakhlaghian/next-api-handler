@@ -1,8 +1,1 @@
-export enum Methods {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  UPDATE = 'UPDATE',
-  PATCH = 'PATCH',
-  DELETE = 'DELETE',
-}
+export type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'UPDATE' | 'DELETE';
