@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { BaseError } from './errors/base-error';
 import { AppError } from './types/app-error';
-import { Method } from './types/methods';
 import { Handler } from './types/handler';
 
 const urlNotFoundError: AppError = {
