@@ -6,7 +6,7 @@ export class ForbiddenError extends BaseError {
   constructor() {
     super();
 
-    Object.setPrototypeOf(this, Object.prototype);
+    Object.setPrototypeOf(this, ForbiddenError.prototype);
   }
 
   serializeErrors() {

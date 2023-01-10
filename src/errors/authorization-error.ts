@@ -6,7 +6,7 @@ export class AuthorizationError extends BaseError {
   constructor() {
     super();
 
-    Object.setPrototypeOf(this, Object.prototype);
+    Object.setPrototypeOf(this, AuthorizationError.prototype);
   }
 
   serializeErrors() {
