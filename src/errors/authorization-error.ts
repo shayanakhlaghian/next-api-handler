@@ -10,6 +10,6 @@ export class AuthorizationError extends BaseError {
   }
 
   serializeErrors() {
-    return { errors: [{ message: "You're not authorized." }] };
+    return { errors: [{ message: "you're not authorized." }] };
   }
 }

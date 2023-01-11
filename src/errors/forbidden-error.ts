@@ -11,7 +11,7 @@ export class ForbiddenError extends BaseError {
 
   serializeErrors() {
     return {
-      errors: [{ message: "You're not allowed to access this route." }],
+      errors: [{ message: "you're not allowed to access this route." }],
     };
   }
 }

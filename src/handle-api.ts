@@ -6,7 +6,7 @@ import { Handler } from './types/handler';
 const urlNotFoundError: AppError = {
   errors: [
     {
-      message: 'Requested url was not found on the server.',
+      message: 'requested url was not found on the server.',
     },
   ],
 };
@@ -14,7 +14,7 @@ const urlNotFoundError: AppError = {
 const systemError: AppError = {
   errors: [
     {
-      message: 'Something went wrong.',
+      message: 'something went wrong.',
     },
   ],
 };
